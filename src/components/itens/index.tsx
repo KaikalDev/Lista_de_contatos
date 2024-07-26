@@ -1,6 +1,6 @@
 import * as S from './styled'
 import * as enums from '../../utils/enums/status'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {
   AlteraParaEditando,
@@ -9,6 +9,7 @@ import {
 } from '../../store/reducers/contatos'
 import { Botao, Icon } from '../../style/global'
 import Add from '../../image/add_circle_black.png'
+import Inputmask from 'inputmask'
 
 type Props = {
   Nome: string
@@ -24,6 +25,15 @@ const Contato = ({ Nome, Email, Numero, checked, id, estaEditando }: Props) => {
   const [nome, setNome] = useState(Nome)
   const [email, setEmail] = useState(Email)
   const [numero, setNumero] = useState(Numero)
+
+  const TelefoneRef = useRef<HTMLInputElement | null>(null)
+
+  useEffect(() => {
+    if (TelefoneRef.current) {
+      const mask = new Inputmask('(99) 9 9999-9999')
+      mask.mask(TelefoneRef.current)
+    }
+  })
 
   function Altera(e: ChangeEvent<HTMLInputElement>) {
     dispatch(AlteraStatus({ id, finalizado: e.target.checked }))
@@ -57,6 +67,7 @@ const Contato = ({ Nome, Email, Numero, checked, id, estaEditando }: Props) => {
           disabled={!estaEditando}
           type="text"
           value={nome}
+          required
         />
       </S.Tags>
       <S.Tags>
@@ -65,6 +76,8 @@ const Contato = ({ Nome, Email, Numero, checked, id, estaEditando }: Props) => {
           disabled={!estaEditando}
           type="text"
           value={numero}
+          ref={TelefoneRef}
+          required
         />
       </S.Tags>
       <S.Tags>
@@ -73,6 +86,7 @@ const Contato = ({ Nome, Email, Numero, checked, id, estaEditando }: Props) => {
           disabled={!estaEditando}
           type="email"
           value={email}
+          required
         />
       </S.Tags>
     </S.Item>

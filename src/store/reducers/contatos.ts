@@ -10,26 +10,10 @@ const initialState: ContatoState = {
   itens: [
     {
       checked: enums.Status.UNCHECKED,
-      nome: 'Rhubi Marçal',
-      email: 'rhubimarcal20@gmail.com',
-      numero: '(99) 9 9999-9999',
+      nome: 'Kaique',
+      email: 'kaiquesimoes@gmail.com',
+      numero: '(00) 0 0000-0000',
       id: 1,
-      estaEditando: false
-    },
-    {
-      checked: enums.Status.UNCHECKED,
-      nome: 'Rhubi Marçal',
-      email: 'rhubimarcal20@gmail.com',
-      numero: '(83) 9 9944-7476',
-      id: 2,
-      estaEditando: false
-    },
-    {
-      checked: enums.Status.UNCHECKED,
-      nome: 'Rhubi Marçal',
-      email: 'rhubimarcal20@gmail.com',
-      numero: '(83) 9 9944-7476',
-      id: 3,
       estaEditando: false
     }
   ]
